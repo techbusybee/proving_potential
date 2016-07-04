@@ -1,0 +1,84 @@
+﻿@model BugBusinessLayer.ProgramModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Program, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Program, new { @class = "form-control", Id = "Program", maxlength = "15" } )
+                @Html.ValidationMessageFor(model => model.Program, "", new { @class = "text-danger" })
+                <span id="result" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Version, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Version, new { @class = "form-control", @required = "true", maxlength = "3", @type = "number", @step = "1", @value = "0"})
+                @Html.ValidationMessageFor(model => model.Version, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Release, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Release, new { @class = "form-control", @required = "true", maxlength = "3", @type = "number", @step = "1", @value = "0" })
+                @Html.ValidationMessageFor(model => model.Release, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" onclick="location.href='@Url.Action("Create", "Program")'">Create</button>
+                <button onclick="location.href='@Url.Action("CancelNewProgram", "Program")';return false;">Cancel</button>
+            </div>
+        </div>*@
+        <div class="col-md-offset-2 col-md-10" style="display:inline-block">
+            <div style="display:inline-block">      
+                <button type="submit" formaction="Create" formmethod="post">Create</button>               
+            </div>
+            <div style="display:inline-block">
+                @Html.ActionLink("Cancel", "Index")
+            </div>
+        </div>
+
+    </div>
+}
+
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/jscript">
+        $('#Program').blur(function () {
+            //alert("hi");
+            var url = "/Program/DoesProgramExist";
+            var name = $('#Program').val();
+            //alert(name);
+            $.get(url, { input: name }, function (data) {
+                if (data == "Available") {
+                    $("#result").html("<span style='color:green'> </span>");
+                    $("#Program").css('background-color', '');
+                }
+                else {
+                    $("#result").html("<span style='color:red'>Program name already exists.</span>");
+                    $("#Program").css('background-color', '#e97878');
+                }
+            });
+        })
+    </script>
+}
