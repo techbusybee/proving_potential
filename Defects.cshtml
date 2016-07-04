@@ -1,0 +1,199 @@
+﻿@model IEnumerable<BugBusinessLayer.BugModel>
+
+@{
+    ViewBag.Title = "Defects";
+}
+
+<h3>Available Defects</h3>
+
+<div style="display:inline">
+   
+</div>
+
+<p>
+    <br/>
+    @Html.ActionLink("Add Bug", "NewBug") | @Html.ActionLink("Search", "Search") @*| @Html.ActionLink("Reset Filter", "Defects")*@
+</p>
+
+<table class="table" border="1" >
+    <tr>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.DefectId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Program)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Version)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Release)
+        </th>
+        <th class="problem">
+            @Html.DisplayNameFor(model => model.Problem)
+        </th>
+        <th class="problemSummary">
+            @Html.DisplayNameFor(model => model.ProblemSummary)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Program)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reporttype)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Severity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProblemSummary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reproducible)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Problem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SuggestedFix)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.ReportedBy)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.SqlDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FunctionalArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssignedTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comments)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.SqlStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Priority)
+        </th>       
+        <th>
+            Action
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Resolution)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResolutionVersion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResolvedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResolvedByDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestedbyDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TreatAsDeferred)
+            </th>*@       
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="text-align:center">
+                @*@Html.ActionLink(item.DefectId.ToString(), "Details", new { id = item.DefectId }, new { style = "font: Bold" })*@
+               <strong> @Html.DisplayFor(modelItem => item.DefectId)</strong>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Program)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Version)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Release)
+            </td>
+            <td class="problem">
+                @Html.DisplayFor(modelItem => item.Problem)
+            </td>
+            <td class="problemSummary">
+                @Html.DisplayFor(modelItem => item.ProblemSummary)
+            </td>
+            @*<td>     @Html.DisplayFor(modelItem => item.DefectId)
+                    @Html.DisplayFor(modelItem => item.Program)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reporttype)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Severity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProblemSummary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reproducible)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Problem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SuggestedFix)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportedBy)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.SqlDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FunctionalArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssignedTo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comments)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.SqlStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Priority)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Resolution)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResolutionVersion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResolvedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResolvedByDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TestedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TestedbyDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TreatAsDeferred)
+                </td>*@
+            <td>
+                @Html.ActionLink("Update", "Edit", new { id = item.DefectId.ToString() })
+                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
+
+</table>
